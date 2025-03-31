@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react';
 import { useState } from 'react'
 
 export default function Registrazione() {
@@ -8,22 +9,32 @@ export default function Registrazione() {
   const [messaggio, setMessaggio] = useState(null)
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setMessaggio(null)
-
-    const res = await fetch('/api/auth/registrazione', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    })
-
-    const data = await res.json()
-    if (res.ok) {
-      setMessaggio('Registrazione avvenuta con successo!')
-    } else {
-      setMessaggio(data.error || 'Errore')
+    e.preventDefault();
+    setMessaggio(null);
+  
+    try {
+      const res = await fetch('/api/auth/registrazione', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      // Controlla se il Content-Type è JSON
+      const contentType = res.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('La risposta del server non è in formato JSON');
+      }
+  
+      const data = await res.json();
+      if (res.ok) {
+        setMessaggio('Registrazione avvenuta con successo!');
+      } else {
+        setMessaggio(data.error || 'Errore');
+      }
+    } catch (error) {
+      setMessaggio(error.message || 'Errore durante la registrazione');
     }
-  }
+  };
 
   return (
     <div className="container mt-5">
