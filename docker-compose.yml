@@ -1,0 +1,41 @@
+services:
+  the-witcher-fight-app:
+    build:
+      context: ./the-witcher-fight-app
+      dockerfile: Dockerfile
+    container_name: the-witcher-fight-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./the-witcher-fight-app:/app
+      - /app/node_modules   # <-- questo volume anonimo va bene!
+      - /app/.next          # <-- aggiungi anche questa riga per isolare il build Next.js interno
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://postgres:spartan118@postgres-db:5432/witcher-fight
+    depends_on:
+      - postgres-db
+    networks:
+      - witcher_fight_network
+
+  postgres-db:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: spartan118
+      POSTGRES_DB: witcher-fight
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - witcher_fight_network
+
+volumes:
+  db-data:
+
+networks:
+  witcher_fight_network:
+    driver: bridge
