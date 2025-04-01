@@ -3,12 +3,18 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { PrismaClient } from '@prisma/client';
+import { Pool } from 'pg';
 
-const prisma = new PrismaClient();
+// Configura il pool di connessione a PostgreSQL
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
 const JWT_SECRET = process.env.JWT_SECRET || "default_secret";
 
 export async function POST(request) {
+  let client;
+
   try {
     const body = await request.json();
     const { email, password } = body;
@@ -17,11 +23,18 @@ export async function POST(request) {
       return NextResponse.json({ error: "Email e password sono obbligatorie" }, { status: 400 });
     }
 
+    // Connessione al database
+    client = await pool.connect();
+
     // Trova l'utente tramite email
-    const utente = await prisma.utente.findUnique({ where: { email } });
-    if (!utente) {
+    const queryText = 'SELECT id, email, password_hash, ruolo FROM utente WHERE email = $1';
+    const result = await client.query(queryText, [email]);
+
+    if (result.rows.length === 0) {
       return NextResponse.json({ error: "Credenziali non valide" }, { status: 400 });
     }
+
+    const utente = result.rows[0];
 
     // Verifica la password
     const isValid = await bcrypt.compare(password, utente.password_hash);
@@ -40,5 +53,9 @@ export async function POST(request) {
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Errore interno del server" }, { status: 500 });
+  } finally {
+    if (client) {
+      client.release();
+    }
   }
 }
