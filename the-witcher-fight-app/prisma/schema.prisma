@@ -1,0 +1,36 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Utente {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  passwordHash String
+  ruolo        Ruolo
+  schede       Scheda[]
+}
+
+model Scheda {
+  id       Int      @id @default(autoincrement())
+  nome     String
+  tipo     TipoScheda
+  dati     Json
+  utente   Utente   @relation(fields: [utenteId], references: [id])
+  utenteId Int
+}
+
+enum Ruolo {
+  giocatore
+  master
+}
+
+enum TipoScheda {
+  pg
+  png
+}
