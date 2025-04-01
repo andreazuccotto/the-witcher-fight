@@ -24,7 +24,7 @@ export async function POST(request) {
     }
 
     // Verifica la password
-    const isValid = await bcrypt.compare(password, utente.passwordHash);
+    const isValid = await bcrypt.compare(password, utente.password_hash);
     if (!isValid) {
       return NextResponse.json({ error: "Credenziali non valide" }, { status: 400 });
     }

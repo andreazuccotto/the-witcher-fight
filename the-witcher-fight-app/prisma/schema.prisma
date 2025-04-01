@@ -11,7 +11,7 @@ datasource db {
 model Utente {
   id           Int       @id @default(autoincrement())
   email        String    @unique
-  passwordHash String
+  password_hash String
   ruolo        Ruolo
   schede       Scheda[]
 }
@@ -21,8 +21,8 @@ model Scheda {
   nome     String
   tipo     TipoScheda
   dati     Json
-  utente   Utente   @relation(fields: [utenteId], references: [id])
-  utenteId Int
+  utente   Utente   @relation(fields: [id_utente], references: [id])
+  id_utente Int
 }
 
 enum Ruolo {
