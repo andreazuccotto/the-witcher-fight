@@ -86,6 +86,7 @@ export default function Registrazione() {
         <button type="submit" className="btn btn-primary" disabled={loading}>
           Registrati
         </button>
+        <a href="/login" className="btn btn-primary mx-2">Login</a>
       </form>
       {messaggio && <div className="alert alert-info mt-3">{messaggio}</div>}
     </div>

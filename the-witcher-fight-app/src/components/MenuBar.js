@@ -3,10 +3,12 @@ import LogoutButton from './LogoutButton';
 
 const MenuBar = ({ user }) => {
     return (
-        <div className="user-menu">
-            <span>Benvenuto, {user?.username || 'Ospite'}</span>
-            <LogoutButton />
-        </div>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <span>Benvenuto, {user?.username || 'Ospite'}</span>
+                <LogoutButton />
+            </div>
+        </nav>
     );
 };
 
