@@ -1,61 +1,86 @@
-// src/app/api/auth/login/route.js
-
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { Pool } from 'pg';
+import jwt from 'jsonwebtoken';
 
-// Configura il pool di connessione a PostgreSQL
+// Configura il pool di connessione al database
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-const JWT_SECRET = process.env.JWT_SECRET || "default_secret";
+// Usa una variabile d'ambiente per il segreto JWT
+const JWT_SECRET = process.env.JWT_SECRET || 'your_default_secret';
 
 export async function POST(request) {
-  let client;
-
   try {
-    const body = await request.json();
-    const { email, password } = body;
+    const { email, password } = await request.json();
 
     if (!email || !password) {
-      return NextResponse.json({ error: "Email e password sono obbligatorie" }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Email e password sono obbligatorie' },
+        { status: 400 }
+      );
     }
 
-    // Connessione al database
-    client = await pool.connect();
-
-    // Trova l'utente tramite email
-    const queryText = 'SELECT id, email, password_hash, ruolo FROM utente WHERE email = $1';
-    const result = await client.query(queryText, [email]);
-
+    // Query per trovare l'utente nella tabella "utente"
+    const query = 'SELECT * FROM utente WHERE email = $1';
+    const result = await pool.query(query, [email]);
     if (result.rows.length === 0) {
-      return NextResponse.json({ error: "Credenziali non valide" }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Credenziali non valide' },
+        { status: 400 }
+      );
+    }
+    const user = result.rows[0];
+
+    // Confronta la password inserita con quella memorizzata (colonna "password_hash")
+    const valid = await bcrypt.compare(password, user.password_hash);
+    if (!valid) {
+      return NextResponse.json(
+        { error: 'Credenziali non valide' },
+        { status: 400 }
+      );
     }
 
-    const utente = result.rows[0];
-
-    // Verifica la password
-    const isValid = await bcrypt.compare(password, utente.password_hash);
-    if (!isValid) {
-      return NextResponse.json({ error: "Credenziali non valide" }, { status: 400 });
-    }
-
-    // Genera un token JWT
+    // Crea un token JWT con i dati dell'utente
     const token = jwt.sign(
-      { id: utente.id, email: utente.email, ruolo: utente.ruolo },
+      {
+        id: user.id,
+        email: user.email,
+        ruolo: user.ruolo, // ad esempio "master" o "giocatore"
+      },
       JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: '1h' }
     );
 
-    return NextResponse.json({ message: "Login effettuato con successo", token });
+    // Determina il redirect URL in base al ruolo
+    const redirectUrl = user.ruolo === 'master' ? '/dashboard/master' : '/dashboard/player';
+
+    console.log('Token:', token);
+    console.log('Redirect URL:', redirectUrl);
+
+    // Prepara la risposta in JSON
+    const response = NextResponse.json({ 
+      message: 'Login effettuato con successo', 
+      redirectUrl, 
+      token, 
+      ruolo: user.ruolo 
+    });
+    // Imposta il cookie httpOnly contenente il token
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      path: '/',
+      sameSite: 'lax', // oppure 'strict' se preferisci
+      // In produzione, aggiungi secure: true se usi HTTPS
+    });
+    
+
+    return response;
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Errore interno del server" }, { status: 500 });
-  } finally {
-    if (client) {
-      client.release();
-    }
+    return NextResponse.json(
+      { error: 'Errore interno del server' },
+      { status: 500 }
+    );
   }
 }

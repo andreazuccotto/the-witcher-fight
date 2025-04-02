@@ -1,31 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-
-// Componente overlay per il loader
-function OverlayLoader({ loading }) {
-  if (!loading) return null
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 9999,
-      }}
-    >
-      <div className="spinner-border text-light" role="status">
-        <span className="visually-hidden">Caricamento...</span>
-      </div>
-    </div>
-  )
-}
+import Loader from '@/components/Loader' // Importa il componente Loader
 
 export default function Registrazione() {
   const [email, setEmail] = useState('')
@@ -59,8 +35,8 @@ export default function Registrazione() {
 
   return (
     <div className="container mt-5">
-      {/* Overlay loader: si visualizza sopra il contenuto */}
-      <OverlayLoader loading={loading} />
+      {/* Usa il componente Loader */}
+      <Loader loading={loading} />
 
       <h2>Registrazione</h2>
       <form onSubmit={handleSubmit} className="mt-4">

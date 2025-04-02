@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".", // Imposta la directory base per i percorsi relativi
+            "paths": {
+            "@/*": ["src/*"] // Mappa l'alias '@' alla cartella 'src'
+        }
+    }
+}
