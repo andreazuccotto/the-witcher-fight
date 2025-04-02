@@ -47,6 +47,7 @@ export async function POST(request) {
       {
         id: user.id,
         email: user.email,
+        username: user.username,
         ruolo: user.ruolo, // ad esempio "master" o "giocatore"
       },
       JWT_SECRET,

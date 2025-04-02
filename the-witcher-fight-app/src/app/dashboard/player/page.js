@@ -28,7 +28,7 @@ export default async function PlayerDashboard() {
       <MenuBar user={user} />
 
       <h1>Dashboard Giocatore</h1>
-      <p>Ciao {user.email}, qui puoi vedere le schede del tuo personaggio.</p>
+      <p>Ciao {user.username}, qui puoi vedere le schede del tuo personaggio.</p>
       {/* Inserisci qui il codice per mostrare le schede del personaggio */}
     </div>
   );

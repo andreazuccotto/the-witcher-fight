@@ -12,10 +12,10 @@ const pool = new Pool({
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { email, password } = body;
+    const { email, password, username } = body;
 
-    if (!email || !password) {
-      return NextResponse.json({ error: "Email e password sono obbligatorie" }, { status: 400 });
+    if (!email || !password || !username) {
+      return NextResponse.json({ error: "Username, email e password sono obbligatori" }, { status: 400 });
     }
 
     // Verifica se l'utente esiste già
@@ -32,11 +32,11 @@ export async function POST(request) {
 
     // Crea l'utente con ruolo "giocatore" (di default)
     const createUserQuery = `
-      INSERT INTO utente (email, password_hash, ruolo)
-      VALUES ($1, $2, $3)
+      INSERT INTO utente (email, password_hash, ruolo, username)
+      VALUES ($1, $2, $3, $4)
       RETURNING *;
     `;
-    const createUserResult = await pool.query(createUserQuery, [email, password_hash, 'giocatore']);
+    const createUserResult = await pool.query(createUserQuery, [email, password_hash, 'giocatore', username]);
 
     const utente = createUserResult.rows[0];
 

@@ -4,7 +4,7 @@ import LogoutButton from './LogoutButton';
 const MenuBar = ({ user }) => {
     return (
         <div className="user-menu">
-            <span>Benvenuto, {user?.email || 'Ospite'}</span>
+            <span>Benvenuto, {user?.username || 'Ospite'}</span>
             <LogoutButton />
         </div>
     );

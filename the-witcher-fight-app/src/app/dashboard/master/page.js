@@ -30,7 +30,7 @@ export default async function MasterDashboard() {
       <MenuBar user={user} />
 
       <h1>Dashboard Master</h1>
-      <p>Ciao {user.email}, qui puoi vedere le schede di tutti i giocatori.</p>
+      <p>Ciao {user.username}, qui puoi vedere le schede di tutti i giocatori.</p>
       {/* Inserisci qui il codice per mostrare le schede di tutti i giocatori */}
     </div>
   );

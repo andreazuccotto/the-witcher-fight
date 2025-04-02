@@ -6,6 +6,7 @@ import Loader from '@/components/Loader' // Importa il componente Loader
 export default function Registrazione() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('') // Aggiungi lo stato per username
   const [messaggio, setMessaggio] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -18,7 +19,7 @@ export default function Registrazione() {
       const res = await fetch('/api/auth/registrazione', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, username }), // Includi username nel payload
       })
       const data = await res.json()
       if (res.ok) {
@@ -41,13 +42,27 @@ export default function Registrazione() {
       <h2>Registrazione</h2>
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="mb-3">
+          <label htmlFor="username" className="form-label">
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            className="form-control border-secondary"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)} // Gestisci il cambiamento di username
+            required
+          />
+        </div>
+
+        <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
             type="email"
             id="email"
-            className="form-control"
+            className="form-control border-secondary"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -61,7 +76,7 @@ export default function Registrazione() {
           <input
             type="password"
             id="password"
-            className="form-control"
+            className="form-control border-secondary"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
