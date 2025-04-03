@@ -71,6 +71,7 @@ export default function Login() {
         <button type="submit" className="btn btn-primary" disabled={loading}>
           Login
         </button>
+        <a href="/regitrazione" className="btn btn-secondary mx-2">Registrati</a>
       </form>
       {messaggio && <div className="alert alert-danger mt-3">{messaggio}</div>}
     </div>
