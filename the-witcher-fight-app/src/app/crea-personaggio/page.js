@@ -76,7 +76,7 @@ export default function CreateCharacter() {
   };
 
   return (
-    <div className="container mt-5">
+    <>
       <MenuBar user={user} />
       <div className="container mt-5">
         <h1>Crea la tua Scheda Personaggio - The Witcher</h1>
@@ -176,6 +176,6 @@ export default function CreateCharacter() {
         </form>
         {message && <div className="alert alert-info mt-3">{message}</div>}
       </div>
-    </div>
+    </>
   );
 }
