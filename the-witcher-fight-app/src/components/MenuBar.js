@@ -3,7 +3,7 @@ import LogoutButton from './LogoutButton';
 
 const MenuBar = ({ user }) => {
     return (
-        <nav className="navbar bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
                 <span className="navbar-brand">
                     Benvenuto, {user?.username || 'Ospite'}
