@@ -26,10 +26,11 @@ export default async function PlayerDashboard() {
     <div className="container mt-5">
       {/* Barra menu utente */}
       <MenuBar user={user} />
-
-      <h1>Dashboard Giocatore</h1>
-      <p>Ciao {user.username}, qui puoi vedere le schede del tuo personaggio.</p>
-      {/* Inserisci qui il codice per mostrare le schede del personaggio */}
+      <div className="container mt-5">
+        <h1>Dashboard Giocatore</h1>
+        <p>Ciao {user.username}, qui puoi vedere le schede del tuo personaggio.</p>
+        {/* Inserisci qui il codice per mostrare le schede del personaggio */}
+      </div>
     </div>
   );
 }

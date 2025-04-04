@@ -28,10 +28,11 @@ export default async function MasterDashboard() {
     <div className="container mt-5">
       {/* Barra menu utente */}
       <MenuBar user={user} />
-
-      <h1>Dashboard Master</h1>
-      <p>Ciao {user.username}, qui puoi vedere le schede di tutti i giocatori.</p>
-      {/* Inserisci qui il codice per mostrare le schede di tutti i giocatori */}
+      <div className="container mt-5">
+        <h1>Dashboard Master</h1>
+        <p>Ciao {user.username}, qui puoi vedere le schede di tutti i giocatori.</p>
+        {/* Inserisci qui il codice per mostrare le schede di tutti i giocatori */}
+      </div>
     </div>
   );
 }
