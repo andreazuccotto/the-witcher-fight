@@ -8,8 +8,6 @@ services:
       - "3000:3000"
     volumes:
       - ./the-witcher-fight-app:/app
-      - /app/node_modules   # <-- questo volume anonimo va bene!
-      - /app/.next          # <-- aggiungi anche questa riga per isolare il build Next.js interno
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://postgres:spartan118@postgres-db:5432/witcher-fight
