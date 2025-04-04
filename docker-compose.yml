@@ -6,8 +6,6 @@ services:
     container_name: the-witcher-fight-app
     ports:
       - "3000:3000"
-    volumes:
-      - ./the-witcher-fight-app:/app
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://postgres:spartan118@postgres-db:5432/witcher-fight
