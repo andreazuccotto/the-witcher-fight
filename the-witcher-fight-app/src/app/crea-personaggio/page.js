@@ -21,29 +21,21 @@ export default function CreateCharacter() {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchToken = async () => {
+    const fetchUser = async () => {
       try {
-        const tokenCookie = await cookieStore.get('token');
-        const token = tokenCookie?.value;
-
-        if (token) {
-          try {
-            const decodedUser = jwt.verify(token, process.env.JWT_SECRET);
-            setUser(decodedUser);
-          } catch (error) {
-            console.error(error);
-            //router.push('/login');
-          }
-        } else {
-          console.error("Token non trovato");
-          //router.push('/login');
+        const res = await fetch('/api/auth/token');
+        if (!res.ok) {
+          throw new Error('Token non trovato');
         }
+        const data = await res.json();
+        setUser(data.user);
       } catch (error) {
-        console.error("Errore nel recupero del cookie:", error);
+        console.error(error.message);
+        router.push('/login');
       }
     };
 
-    fetchToken();
+    fetchUser();
   }, [router]);
 
   const handleChange = (e) => {

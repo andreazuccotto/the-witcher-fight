@@ -61,20 +61,20 @@ export async function POST(request) {
     console.log('Redirect URL:', redirectUrl);
 
     // Prepara la risposta in JSON
-    const response = NextResponse.json({ 
-      message: 'Login effettuato con successo', 
-      redirectUrl, 
-      token, 
-      ruolo: user.ruolo 
+    const response = NextResponse.json({
+      message: 'Login effettuato con successo',
+      redirectUrl,
+      ruolo: user.ruolo,
     });
+
     // Imposta il cookie httpOnly contenente il token
     response.cookies.set('token', token, {
       httpOnly: true,
       path: '/',
-      sameSite: 'lax', // oppure 'strict' se preferisci
-      // In produzione, aggiungi secure: true se usi HTTPS
+      sameSite: 'lax',
+      secure: false, // Disabilita secure in sviluppo
+      maxAge: 3600,
     });
-    
 
     return response;
   } catch (error) {
