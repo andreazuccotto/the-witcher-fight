@@ -1,6 +1,12 @@
-import React from 'react'; // Add this line
+import React from 'react';
+import ClientWrapper from '@/components/ClientWrapper';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/global.css';
+import '../styles/globals.css';
+
+export const metadata = {
+  title: 'The Witcher Fight',
+  description: 'An awesome app',
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -10,7 +16,11 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>The Witcher Fight</title>
       </head>
-      <body>{children}</body>
+      <body>
+        <ClientWrapper>
+          {children}
+        </ClientWrapper>
+      </body>
     </html>
   );
 }
