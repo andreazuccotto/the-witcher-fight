@@ -72,6 +72,7 @@ export default function Login() {
           Login
         </button>
         <a href="/registrazione" className="btn btn-secondary mx-2">Registrati</a>
+        <a href="/password-reset" className="btn btn-link">Password dimenticata?</a>
       </form>
       {messaggio && <div className="alert alert-danger mt-3">{messaggio}</div>}
     </div>
