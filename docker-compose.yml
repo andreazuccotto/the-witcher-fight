@@ -11,6 +11,9 @@ services:
       - DATABASE_URL=postgres://postgres:spartan118@postgres-db:5432/witcher-fight
     depends_on:
       - postgres-db
+    volumes:
+      - ./the-witcher-fight-app:/app # Monta il codice sorgente come volume
+      - /app/node_modules # Ignora i moduli node_modules
     networks:
       - witcher_fight_network
 

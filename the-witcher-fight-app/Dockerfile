@@ -4,9 +4,8 @@ FROM node:20-alpine
 # Imposta la directory di lavoro
 WORKDIR /app
 
-# Copia il package.json e il package-lock.json
-COPY package.json ./ 
-COPY package-lock.json ./ 
+# Copia solo i file necessari per installare le dipendenze
+COPY package*.json ./
 
 # Installa le dipendenze
 RUN npm install -g npm@11.2.0 && npm install
@@ -17,11 +16,8 @@ RUN npm install -g nodemon
 # Copia il resto dei file dell'applicazione
 COPY . .
 
-# Imposta i permessi corretti per i file
-RUN chmod -R 755 /app
-
 # Espone la porta su cui l'applicazione sarà in ascolto
 EXPOSE 3000
 
 # Comando per avviare l'applicazione in modalità sviluppo con nodemon
-CMD ["nodemon", "--watch", ".", "--exec", "next", "dev"]
+CMD ["nodemon", "--watch", ".", "--legacy-watch", "--exec", "next", "dev"]
