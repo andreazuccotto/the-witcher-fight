@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -13,35 +13,40 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Mostra immediatamente il loader
     setLoading(true);
     setMessaggio(null);
 
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+    // Forza il rendering del loader prima di eseguire operazioni asincrone
+    requestAnimationFrame(async () => {
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (res.ok) {
-        console.log('Redirecting to:', data.redirectUrl);
-        router.push(data.redirectUrl);
-      } else {
-        setMessaggio(data.error || 'Errore durante il login');
+        if (res.ok) {
+          console.log('Redirecting to:', data.redirectUrl);
+          router.push(data.redirectUrl);
+        } else {
+          setMessaggio(data.error || 'Errore durante il login');
+        }
+      } catch (error) {
+        console.error(error);
+        setMessaggio('Errore di rete');
+      } finally {
+        setLoading(false); // Nascondi il loader
       }
-    } catch (error) {
-      console.error(error);
-      setMessaggio('Errore di rete');
-    } finally {
-      setLoading(false);
-    }
+    });
   };
 
   return (
     <div className="container mt-5">
-      {/* Usa il componente Loader */}
+      {/* Passa lo stato `loading` al componente Loader */}
       <Loader loading={loading} />
 
       <h2>Login</h2>
@@ -71,7 +76,7 @@ export default function Login() {
         <button type="submit" className="btn btn-primary" disabled={loading}>
           Login
         </button>
-        <a href="/registrazione" className="btn btn-secondary mx-2">Registrati</a>
+        <a href="/registrazione" className="btn btn-link">Registrati</a>
         <a href="/password-reset" className="btn btn-link">Password dimenticata?</a>
       </form>
       {messaggio && <div className="alert alert-danger mt-3">{messaggio}</div>}

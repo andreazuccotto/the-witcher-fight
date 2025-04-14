@@ -14,7 +14,7 @@ export default function Registrazione() {
     e.preventDefault()
     setLoading(true)
     setMessaggio(null)
-    
+
     try {
       const res = await fetch('/api/auth/registrazione', {
         method: 'POST',
@@ -86,7 +86,7 @@ export default function Registrazione() {
         <button type="submit" className="btn btn-primary" disabled={loading}>
           Registrati
         </button>
-        <a href="/login" className="btn btn-secondary mx-2">Login</a>
+        <a href="/login" className="btn btn-link">Login</a>
       </form>
       {messaggio && <div className="alert alert-info mt-3">{messaggio}</div>}
     </div>

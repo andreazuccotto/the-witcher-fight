@@ -55,7 +55,7 @@ export default function PasswordReset() {
                     />
                 </div>
                 <button type="submit" className="btn btn-primary" disabled={loading}>
-                    {loading ? 'Invio...' : 'Recupera Password'}
+                    Recupera Password
                 </button>
             </form>
             {messaggio && (
