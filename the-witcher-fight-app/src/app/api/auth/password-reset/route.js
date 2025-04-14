@@ -10,15 +10,21 @@ export async function POST(req) {
             return new Response(JSON.stringify({ error: 'Email richiesta' }), { status: 400 });
         }
 
+        console.log("nodemailer.createTransport");
+
         // Configura il trasportatore di Nodemailer
         const transporter = nodemailer.createTransport({
             host: process.env.EMAIL_HOST,
             port: process.env.EMAIL_PORT,
-            secure: false, // Usa `true` per la porta 465, `false` per la porta 587
+            secure: true, // Usa `true` per la porta 465, `false` per la porta 587
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS,
             },
+            tls: {
+                // Do not fail on invalid certs
+                rejectUnauthorized: false
+            }
         });
 
         // Configura il contenuto dell'email
@@ -28,6 +34,8 @@ export async function POST(req) {
             subject: 'Recupero Password - The Witcher Fight',
             text: 'Clicca sul link per reimpostare la tua password: https://example.com/password-reset',
         };
+
+        console.log("transporter.sendMail");
 
         // Invia l'email
         await transporter.sendMail(mailOptions);
