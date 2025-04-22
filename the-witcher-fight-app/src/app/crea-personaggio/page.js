@@ -9,7 +9,7 @@ export default function CreateCharacter() {
   const [formData, setFormData] = useState({
     nome: '',
     razza: '',
-    classe: '',
+    professione: '',
     forza: '',
     destrezza: '',
     intelligenza: '',
@@ -88,73 +88,148 @@ export default function CreateCharacter() {
           </div>
           <div className="mb-3">
             <label htmlFor="razza" className="form-label">Razza</label>
-            <input
-              type="text"
+            <select
               id="razza"
               name="razza"
-              className="form-control"
+              className="form-select"
               value={formData.razza}
               onChange={handleChange}
               required
-            />
+            >
+              <option value=""></option>
+              <option value="witcher">Witcher</option>
+              <option value="elfo">Elfo</option>
+              <option value="nano">Nano</option>
+              <option value="umano">Umano</option>
+            </select>
           </div>
           <div className="mb-3">
-            <label htmlFor="classe" className="form-label">Classe</label>
-            <input
-              type="text"
-              id="classe"
-              name="classe"
-              className="form-control"
-              value={formData.classe}
+            <label htmlFor="professione" className="form-label">Professione</label>
+            <select
+              id="professione"
+              name="professione"
+              className="form-select"
+              value={formData.professione}
               onChange={handleChange}
               required
-            />
+            >
+              <option value=""></option>
+              <option value="armigero">Armigero</option>
+              <option value="artigiano">Artigiano</option>
+              <option value="bardo">Bardo</option>
+              <option value="criminale">Criminale</option>
+              <option value="mago">Mago</option>
+              <option value="criminale">Medico</option>
+              <option value="mercante">Mercante</option>
+              <option value="prete">Prete</option>
+              <option value="witcher">Witcher</option>
+            </select>
           </div>
           <div className="row">
             <div className="col">
-              <label htmlFor="forza" className="form-label">Forza</label>
+              <label htmlFor="int" className="form-label">Intelligenza</label>
               <input
                 type="number"
-                id="forza"
-                name="forza"
+                id="int"
+                name="int"
                 className="form-control"
-                value={formData.forza}
+                value={formData.int}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="col">
-              <label htmlFor="destrezza" className="form-label">Destrezza</label>
+              <label htmlFor="rif" className="form-label">Riflessi</label>
               <input
                 type="number"
-                id="destrezza"
-                name="destrezza"
+                id="rif"
+                name="rif"
                 className="form-control"
-                value={formData.destrezza}
+                value={formData.rif}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="col">
-              <label htmlFor="intelligenza" className="form-label">Intelligenza</label>
+              <label htmlFor="des" className="form-label">Destrezza</label>
               <input
                 type="number"
-                id="intelligenza"
-                name="intelligenza"
+                id="des"
+                name="des"
                 className="form-control"
-                value={formData.intelligenza}
+                value={formData.des}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="col">
-              <label htmlFor="vitalita" className="form-label">Vitalità</label>
+              <label htmlFor="fis" className="form-label">Fisico</label>
               <input
                 type="number"
-                id="vitalita"
-                name="vitalita"
+                id="fis"
+                name="fis"
                 className="form-control"
-                value={formData.vitalita}
+                value={formData.fis}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="vel" className="form-label">Velocità</label>
+              <input
+                type="number"
+                id="vel"
+                name="vel"
+                className="form-control"
+                value={formData.vel}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="emp" className="form-label">Empatia</label>
+              <input
+                type="number"
+                id="emp"
+                name="emp"
+                className="form-control"
+                value={formData.emp}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="man" className="form-label">Manualità</label>
+              <input
+                type="number"
+                id="man"
+                name="man"
+                className="form-control"
+                value={formData.man}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="vol" className="form-label">Volontà</label>
+              <input
+                type="number"
+                id="vol"
+                name="vol"
+                className="form-control"
+                value={formData.vol}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="for" className="form-label">Fortuna</label>
+              <input
+                type="number"
+                id="for"
+                name="for"
+                className="form-control"
+                value={formData.for}
                 onChange={handleChange}
                 required
               />
