@@ -16,6 +16,9 @@ const MenuBar = ({ user }) => {
                         <li className="nav-item">
                             <a className="nav-link" aria-current="page" href="/crea-personaggio">Crea Personaggio</a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" aria-current="page" href="/scheda-personaggio">Scheda Personaggio</a>
+                        </li>
                     </ul>
                 </div>
                 <LogoutButton />
