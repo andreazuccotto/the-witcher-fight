@@ -42,121 +42,141 @@ export default function ViewScheda() {
     if (error) return <div className="container mt-5 text-danger">Errore: {error}</div>
 
     return (
-        <div className="container mt-5">
-            <MenuBar user={user} />
-            <div className="container mt-5">
-                <h1>{scheda.nome}</h1>
-                <p>
-                    <strong>Sesso:</strong> {scheda.sesso} &nbsp;
-                    <strong>Razza:</strong> {scheda.razza} &nbsp;
-                    <strong>Professione:</strong> {scheda.professione}
-                </p>
+        <div className="container my-5">
+            <h1 className="text-center text-uppercase border-bottom pb-2 mb-4">
+                {scheda.nome}
+            </h1>
 
-                {/* Statistiche */}
-                <h2>Statistiche</h2>
-                <div className="row row-cols-2 row-cols-md-5 g-3">
-                    {Object.entries(scheda.statistiche).map(([key, value]) => (
-                        <div className="col" key={key}>
-                            <div className="card p-2 text-center">
-                                <div className="card-title text-capitalize">{key}</div>
-                                <div className="card-text fs-4">{value}</div>
-                            </div>
-                        </div>
-                    ))}
+            <div className="row">
+                {/* Colonna sinistra */}
+                <div className="col-md-4">
+                    <table className="table table-sm">
+                        <tbody>
+                            <tr><th>Razza</th><td>{scheda.razza}</td></tr>
+                            <tr><th>Professione</th><td>{scheda.professione}</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h5 className="mt-4">Statistiche</h5>
+                    <table className="table table-sm">
+                        <tbody>
+                            {Object.entries(scheda.statistiche).reduce((rows, [key, val], i, arr) => {
+                                if (i % 2 === 0) rows.push([arr[i], arr[i + 1]]);
+                                return rows;
+                            }, []).map(([s1, s2], idx) => (
+                                <tr key={idx}>
+                                    <th className="text-uppercase">{s1[0]}</th><td>{s1[1]}</td>
+                                    {s2 ? <>
+                                        <th className="text-uppercase">{s2[0]}</th><td>{s2[1]}</td>
+                                    </> : <><th></th><td></td></>}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <h5 className="mt-4">Salute & Resistenza</h5>
+                    <table className="table table-sm">
+                        <tbody>
+                            <tr><th>Salute</th><td>{scheda.salute}</td></tr>
+                            <tr><th>Resistenza</th><td>{scheda.resistenza}</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h5 className="mt-4">Armatura</h5>
+                    <table className="table table-sm">
+                        <thead>
+                            <tr><th>Locazione</th><th>PR</th><th>Danni</th></tr>
+                        </thead>
+                        <tbody>
+                            {scheda.armatura.map((a, i) => (
+                                <tr key={i}>
+                                    <td>{a.locazione}</td>
+                                    <td>{a.pr}</td>
+                                    <td>{a.danni}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <h5 className="mt-4">Capacità</h5>
+                    <ul className="small">
+                        {scheda.capacita.map((c, i) => <li key={i}>{c}</li>)}
+                    </ul>
                 </div>
 
-                {/* Abilità */}
-                <h2 className="mt-4">Abilità</h2>
-                <div className="row">
-                    {scheda.abilita.map((a, i) => (
-                        <div className="col-6 col-md-4 mb-2" key={i}>
-                            {a.nome}: {a.valore}
-                        </div>
-                    ))}
+                {/* Colonna centrale */}
+                <div className="col-md-4">
+                    <h5>Equipaggiamento</h5>
+                    <table className="table table-sm">
+                        <thead>
+                            <tr><th>Oggetto</th><th>Quantità</th></tr>
+                        </thead>
+                        <tbody>
+                            {scheda.equipaggiamento.map((e, i) => (
+                                <tr key={i}>
+                                    <td>{e.oggetto}</td>
+                                    <td>{e.quantita}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <h5 className="mt-4">Abilità</h5>
+                    <div className="row">
+                        {scheda.abilita.map((a, i) => (
+                            <div className="col-6 small" key={i}>{a.nome}: <strong>{a.valore}</strong></div>
+                        ))}
+                    </div>
+
+                    <h5 className="mt-4">Abilità Esclusive</h5>
+                    <div className="row">
+                        {scheda['abilità esclusive'].map((a, i) => (
+                            <div className="col-6 small" key={i}>{a.nome}: <strong>{a.valore}</strong></div>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Abilità esclusive */}
-                <h2 className="mt-4">Abilità Esclusive</h2>
-                <div className="row">
-                    {scheda['abilità esclusive'].map((a, i) => (
-                        <div className="col-6 col-md-4 mb-2" key={i}>
-                            {a.nome}: {a.valore}
-                        </div>
-                    ))}
+                {/* Colonna destra */}
+                <div className="col-md-4">
+                    <h5>Armi</h5>
+                    <table className="table table-sm">
+                        <thead>
+                            <tr><th>Nome</th><th>PA</th><th>Danno</th><th>Effetti</th></tr>
+                        </thead>
+                        <tbody>
+                            {scheda.combattimento.map((c, i) => (
+                                <tr key={i}>
+                                    <td>{c.nome}</td>
+                                    <td>{c.PA}</td>
+                                    <td>{c.danno}</td>
+                                    <td>{c.effetti}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <h5 className="mt-4">Magie</h5>
+                    <table className="table table-sm small">
+                        <thead>
+                            <tr>
+                                <th>Nome</th><th>RES</th><th>Difesa</th><th>Portata</th><th>Durata</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {scheda.magie.map((m, i) => (
+                                <tr key={i}>
+                                    <td>{m.nome}</td>
+                                    <td>{m['costo in RES']}</td>
+                                    <td>{m.difesa}</td>
+                                    <td>{m.portata}</td>
+                                    <td>{m.durata}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-
-                {/* Armatura */}
-                <h2 className="mt-4">Armatura</h2>
-                <table className="table">
-                    <thead>
-                        <tr><th>Locazione</th><th>PR</th><th>Danni</th></tr>
-                    </thead>
-                    <tbody>
-                        {scheda.armatura.map((ar, i) => (
-                            <tr key={i}>
-                                <td>{ar.locazione}</td>
-                                <td>{ar.pr}</td>
-                                <td>{ar.danni}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                {/* Combattimento */}
-                <h2 className="mt-4">Combattimento</h2>
-                <table className="table">
-                    <thead>
-                        <tr><th>Arma</th><th>PA</th><th>Danno</th><th>Effetti</th></tr>
-                    </thead>
-                    <tbody>
-                        {scheda.combattimento.map((c, i) => (
-                            <tr key={i}>
-                                <td>{c.nome}</td>
-                                <td>{c.PA}</td>
-                                <td>{c.danno}</td>
-                                <td>{c.effetti}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                {/* Capacità */}
-                <h2 className="mt-4">Capacità</h2>
-                <ul>
-                    {scheda.capacita.map((cap, i) => <li key={i}>{cap}</li>)}
-                </ul>
-
-                {/* Equipaggiamento */}
-                <h2 className="mt-4">Equipaggiamento</h2>
-                <table className="table">
-                    <thead><tr><th>Oggetto</th><th>Quantità</th></tr></thead>
-                    <tbody>
-                        {scheda.equipaggiamento.map((e, i) => (
-                            <tr key={i}>
-                                <td>{e.oggetto}</td>
-                                <td>{e.quantita}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                {/* Magie */}
-                <h2 className="mt-4">Magie</h2>
-                <table className="table">
-                    <thead><tr><th>Nome</th><th>Costo RES</th><th>Difesa</th><th>Portata</th><th>Durata</th></tr></thead>
-                    <tbody>
-                        {scheda.magie.map((m, i) => (
-                            <tr key={i}>
-                                <td>{m.nome}</td>
-                                <td>{m['costo in RES']}</td>
-                                <td>{m.difesa}</td>
-                                <td>{m.portata}</td>
-                                <td>{m.durata}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
             </div>
         </div>
+
     )
 }
