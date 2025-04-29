@@ -39,7 +39,7 @@ export default function Login() {
   }
 
   return (
-    <div className="container mt-5 position-relative">
+    <div className="container mt-5">
       {/* Componente Loader */}
       <Loader loading={loading} />
 
