@@ -13,18 +13,23 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_default_secret';
 
 export async function POST(request) {
   try {
-    const { email, password } = await request.json();
+    // Accettiamo sia username che email per compatibilità: preferiamo username
+    const { username, email, password } = await request.json();
 
-    if (!email || !password) {
+    const identifier = username || email;
+
+    if (!identifier || !password) {
       return NextResponse.json(
-        { error: 'Email e password sono obbligatorie' },
+        { error: 'Username (o email) e password sono obbligatorie' },
         { status: 400 }
       );
     }
 
-    // Query per trovare l'utente nella tabella "utente"
-    const query = 'SELECT * FROM utente WHERE email = $1';
-    const result = await pool.query(query, [email]);
+    // Determiniamo la query in base al tipo di identificatore fornito
+    const query = username
+      ? 'SELECT * FROM utente WHERE username = $1'
+      : 'SELECT * FROM utente WHERE email = $1';
+    const result = await pool.query(query, [identifier]);
     if (result.rows.length === 0) {
       return NextResponse.json(
         { error: 'Credenziali non valide' },
