@@ -9,6 +9,7 @@ services:
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://postgres:spartan118@postgres-db:5432/witcher-fight
+      - JWT_SECRET=q8wH2n5r9tYzFv1B4sK3pQ6xN7mR0cL1uVz5dF8gA
     depends_on:
       - postgres-db
     volumes:
