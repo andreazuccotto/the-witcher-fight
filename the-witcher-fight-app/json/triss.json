@@ -1,0 +1,279 @@
+{
+	"nome": "Triss Merigold",
+	"sesso": "femmina",
+    "razza": "Umano",
+    "professione": "Mago",
+	"statistiche": {
+		"int": 9,
+		"rif": 7,
+		"des": 7,
+		"fis": 5,
+		"vel": 5,
+		"emp": 8,
+		"man": 7,
+		"vol": 9,
+		"for": 6,
+		"gri": 7,
+		"cor": 15,
+		"bal": 3,
+		"res": 30,
+		"ing": 50,
+		"rec": 7,
+		"ps": 35,
+		"vig": 21
+	},
+	"salute": 35,
+	"resistenza": 30,
+	"abilita": [
+		{
+			"nome": "sensibilità",
+			"valore": 7
+		},
+		{
+			"nome": "lanciare incantesimi",
+			"valore": 10
+		},
+		{
+			"nome": "intessere fatture",
+			"valore": 5
+		},
+		{
+			"nome": "officiare rituali",
+			"valore": 6
+		},
+		{
+			"nome": "persuasione",
+			"valore": 10
+		},
+		{
+			"nome": "carisma",
+			"valore": 9
+		},
+		{
+			"nome": "cavalcare",
+			"valore": 11
+		},
+		{
+			"nome": "coraggio",
+			"valore": 10
+		},
+		{
+			"nome": "etichetta",
+			"valore": 9
+		},
+		{
+			"nome": "seduzione",
+			"valore": 7
+		},
+		{
+			"nome": "eleganza",
+			"valore": 8
+		},
+		{
+			"nome": "armi in asta",
+			"valore": 6
+		},
+		{
+			"nome": "resistere alla magia",
+			"valore": 6
+		},
+		{
+			"nome": "resistere a coercizioni",
+			"valore": 10
+		},
+		{
+			"nome": "istruzione",
+			"valore": 7
+		},
+		{
+			"nome": "accortezza",
+			"valore": 8
+		},
+		{
+			"nome": "tempra",
+			"valore": 6
+		},
+		{
+			"nome": "eludere",
+			"valore": 6
+		},
+		{
+			"nome": "nascondersi",
+			"valore": 10
+		}
+	],
+	"abilità esclusive": [
+	{
+			"nome": "arte del witcher",
+			"valore": 10
+		},
+		{
+			"nome": "meditazione",
+			"valore": 10
+		},
+		{
+			"nome": "fonte magica",
+			"valore": 10
+		},
+		{
+			"nome": "eliotropo",
+			"valore": 6
+		},
+		{
+			"nome": "stomaco di ferro",
+			"valore": 8
+		},
+		{
+			"nome": "frenesia",
+			"valore": 8
+		},
+		{
+			"nome": "trasmutazione",
+			"valore": 6
+		},
+		{
+			"nome": "parare frecce",
+			"valore": 10
+		},
+		{
+			"nome": "colpo repentino",
+			"valore": 8
+		},
+		{
+			"nome": "fulmine",
+			"valore": 8
+		}
+	],
+	"armatura": [
+		{
+			"locazione": "testa",
+			"pr": 3,
+			"danni": 0
+		},
+		{
+			"locazione": "torace",
+			"pr": 8,
+			"danni": 0
+		},
+		{
+			"locazione": "arti inferiori",
+			"pr": 5,
+			"danni": 0
+		}
+	],
+	"combattimento": [
+		{
+			"nome": "pugno",
+			"PA": 0,
+			"danno": "1d6+2",
+			"effetti": "non letale"
+		},
+		{
+			"nome": "calcio",
+			"PA": 0,
+			"danno": "1d6+2",
+			"effetti": "non letale"
+		},
+		{
+			"nome": "spada d'acciaio",
+			"PA": 0,
+			"danno": "4d6+4",
+			"effetti": "trapassare"
+		},
+		{
+			"nome": "spada d'argento",
+			"PA": 0,
+			"danno": "1d6+2",
+			"effetti": "argento (3d6)"
+		}
+	],
+	"capacita": [
+		"sensi acuiti",
+		"mutazione resiliente",
+		"emozioni attenuate",
+		"riflessi fulminei",
+		"arte del witcher"
+	],
+	"equipaggiamento": [
+		{
+			"oggetto": "corone",
+			"quantita": 50
+		},
+		{
+			"oggetto": "medaglione del witcher",
+			"quantita": 1
+		}
+	],
+	"magie": [
+		{
+			"nome": "segno Yrden",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "segno Quen",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "segno Aard",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "segno Igni",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "segno Axii",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "trappola magica",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "scudo attivo",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "spazzata Aard",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "fiammata",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "marionetta",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		}
+	]
+}

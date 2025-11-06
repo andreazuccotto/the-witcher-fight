@@ -1,0 +1,279 @@
+{
+	"nome": "Yarpen Zigrin",
+	"sesso": "maschio",
+    "razza": "Nano",
+    "professione": "Armigero",
+	"statistiche": {
+		"int": 6,
+		"rif": 14,
+		"des": 10,
+		"fis": 8,
+		"vel": 9,
+		"emp": 3,
+		"man": 5,
+		"vol": 8,
+		"for": 3,
+		"gri": 8,
+		"cor": 27,
+		"bal": 5,
+		"res": 40,
+		"ing": 80,
+		"rec": 8,
+		"ps": 55,
+		"vig": 7
+	},
+	"salute": 55,
+	"resistenza": 55,
+	"abilita": [
+		{
+			"nome": "accortezza",
+			"valore": 9
+		},
+		{
+			"nome": "cavalcare",
+			"valore": 4
+		},
+		{
+			"nome": "lanciare incantesimi",
+			"valore": 8 
+		},
+		{
+			"nome": "alchimia",
+			"valore": 5
+		},
+		{
+			"nome": "lotta",
+			"valore": 6
+		},
+		{
+			"nome": "eludere",
+			"valore": 10
+		},
+		{
+			"nome": "sopravvivenza",
+			"valore": 9
+		},
+		{
+			"nome": "scherma",
+			"valore": 11
+		},
+		{
+			"nome": "atletica",
+			"valore": 10
+		},
+		{
+			"nome": "lame corte",
+			"valore": 9
+		},
+		{
+			"nome": "mischia",
+			"valore": 7
+		},
+		{
+			"nome": "deduzione",
+			"valore": 8
+		},
+		{
+			"nome": "balestre",
+			"valore": 6
+		},
+		{
+			"nome": "nascondersi",
+			"valore": 8
+		},
+		{
+			"nome": "intimidire",
+			"valore": 9
+		},
+		{
+			"nome": "prestanza",
+			"valore": 6
+		},
+		{
+			"nome": "resistere a coercizioni",
+			"valore": 8
+		},
+		{
+			"nome": "resistere alla magia",
+			"valore": 6
+		},
+		{
+			"nome": "tempra",
+			"valore": 10
+		}
+	],
+	"abilità esclusive": [
+	{
+			"nome": "arte del witcher",
+			"valore": 10
+		},
+		{
+			"nome": "meditazione",
+			"valore": 10
+		},
+		{
+			"nome": "fonte magica",
+			"valore": 10
+		},
+		{
+			"nome": "eliotropo",
+			"valore": 6
+		},
+		{
+			"nome": "stomaco di ferro",
+			"valore": 8
+		},
+		{
+			"nome": "frenesia",
+			"valore": 8
+		},
+		{
+			"nome": "trasmutazione",
+			"valore": 6
+		},
+		{
+			"nome": "parare frecce",
+			"valore": 10
+		},
+		{
+			"nome": "colpo repentino",
+			"valore": 8
+		},
+		{
+			"nome": "fulmine",
+			"valore": 8
+		}
+	],
+	"armatura": [
+		{
+			"locazione": "testa",
+			"pr": 3,
+			"danni": 0
+		},
+		{
+			"locazione": "torace",
+			"pr": 8,
+			"danni": 0
+		},
+		{
+			"locazione": "arti inferiori",
+			"pr": 5,
+			"danni": 0
+		}
+	],
+	"combattimento": [
+		{
+			"nome": "pugno",
+			"PA": 0,
+			"danno": "1d6+2",
+			"effetti": "non letale"
+		},
+		{
+			"nome": "calcio",
+			"PA": 0,
+			"danno": "1d6+2",
+			"effetti": "non letale"
+		},
+		{
+			"nome": "spada d'acciaio",
+			"PA": 0,
+			"danno": "4d6+4",
+			"effetti": "trapassare"
+		},
+		{
+			"nome": "spada d'argento",
+			"PA": 0,
+			"danno": "1d6+2",
+			"effetti": "argento (3d6)"
+		}
+	],
+	"capacita": [
+		"sensi acuiti",
+		"mutazione resiliente",
+		"emozioni attenuate",
+		"riflessi fulminei",
+		"arte del witcher"
+	],
+	"equipaggiamento": [
+		{
+			"oggetto": "corone",
+			"quantita": 50
+		},
+		{
+			"oggetto": "medaglione del witcher",
+			"quantita": 1
+		}
+	],
+	"magie": [
+		{
+			"nome": "segno Yrden",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "segno Quen",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "segno Aard",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "segno Igni",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "segno Axii",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "trappola magica",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "scudo attivo",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "spazzata Aard",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "fiammata",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		},
+		{
+			"nome": "marionetta",
+			"costo in RES": 0,
+			"difesa": "nessuna",
+			"portata": "",
+			"durata": ""
+		}
+	]
+}

@@ -1,0 +1,64 @@
+INSERT INTO scheda_personaggio (
+    nome, sesso, razza, professione,
+    intelligenza, riflessi, destrezza, fisico, velocita, empatia, manualita, volonta, fortuna,
+    grinta, coraggio, balistica, resistenza, ingegno, recupero, punti_salute, vigore,
+    abilita, abilita_esclusive, magie
+) VALUES (
+    'Geralt di Rivia',
+    'Maschio',
+    'Witcher',
+    'Witcher',
+    8, 9, 8, 9, 7, 5, 6, 8, 4,
+    10, 8, 6, 9, 7, 8, 55, 12,
+
+    -- ABILITÀ
+    '{
+        "Accortezza": 9,
+        "Cavalcare": 4,
+        "Lanciare Incantesimi": 8,
+        "Alchimia": 5,
+        "Lotta": 6,
+        "Eludere": 10,
+        "Sopravvivenza": 9,
+        "Scherma": 11,
+        "Atletica": 10,
+        "Lame Corte": 9,
+        "Mischia": 7,
+        "Deduzione": 8,
+        "Balestre": 6,
+        "Nascondersi": 8,
+        "Intimidire": 9,
+        "Prestanza": 6,
+        "Resistere a Coercizioni": 8,
+        "Resistere alla Magia": 6,
+        "Tempra": 10
+    }'::jsonb,
+
+    -- ABILITÀ ESCLUSIVE
+    '{
+        "Arte del Witcher": 10,
+        "Meditazione": 10,
+        "Fonte Magica": 10,
+        "Eliotropo": 6,
+        "Stomaco di Ferro": 8,
+        "Frenesia": 8,
+        "Trasmutazione": 6,
+        "Parare Frecce": 10,
+        "Colpo Repentino": 8,
+        "Turbine": 8
+    }'::jsonb,
+
+    -- MAGIE (Segni)
+    '[
+        "Segno Yrden",
+        "Segno Quen",
+        "Segno Aard",
+        "Segno Igni",
+        "Segno Axii",
+        "Trappola Magica",
+        "Scudo Attivo",
+        "Spazzata Aard",
+        "Fiammata",
+        "Marionetta"
+    ]'::jsonb
+);
