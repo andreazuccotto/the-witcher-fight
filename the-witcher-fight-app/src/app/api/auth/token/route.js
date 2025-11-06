@@ -6,7 +6,8 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_default_secret';
 
 export async function GET() {
     try {
-        const cookieStore = cookies();
+        // cookies() deve essere awaited prima di usare il suo valore
+        const cookieStore = await cookies();
         const token = cookieStore.get('token')?.value;
 
         if (!token) {

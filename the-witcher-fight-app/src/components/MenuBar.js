@@ -14,9 +14,6 @@ const MenuBar = ({ user }) => {
                             <a className="nav-link" aria-current="page" href="/dashboard/player">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" aria-current="page" href="/crea-personaggio">Crea Personaggio</a>
-                        </li>
-                        <li className="nav-item">
                             <a className="nav-link" aria-current="page" href="/scheda-personaggio">Scheda Personaggio</a>
                         </li>
                     </ul>
